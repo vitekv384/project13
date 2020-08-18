@@ -1,7 +1,7 @@
 {
-  "name": "project12",
+  "name": "project13",
   "version": "0.0.1",
-  "description": "project 12 of Praktikum",
+  "description": "project 13 of Praktikum",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -16,6 +16,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0"
   }
 }
