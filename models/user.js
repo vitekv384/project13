@@ -15,11 +15,11 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
+    required: true,
     validate: {
       validator: (v) => v.match(/^https?:\/\/(www\.)?[\w./-]{1,}/),
       message: (props) => `${props.value} неверный формат Url`,
     },
-    required: true,
   },
 });
 
