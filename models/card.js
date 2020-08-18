@@ -11,7 +11,7 @@ const cardSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator: (v) => v.match(/^https?:\/\/(www\.)?[\w./-]{1,}/),
-      message: (props) => `${props.value} неверный формат Url`,
+      message: (props) => `${props.value} --неверный формат Url`,
     },
     required: true,
   },
