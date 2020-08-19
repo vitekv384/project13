@@ -28,18 +28,14 @@ module.exports.deleteCard = (req, res) => {
 
 module.exports.likeCard = (req, res) => {
   Card.findByIdAndUpdate(req.params.id, { $addToSet: { likes: req.user._id } }, { new: true })
+    .orFail()
     .then((card) => res.send({ data: card }))
     .catch((err) => res.status(404).send({ message: `Карточки с таким id нет  ${err}` }));
 };
 
 module.exports.dislikeCard = (req, res) => {
   Card.findByIdAndUpdate(req.params.id, { $pull: { likes: req.user._id } }, { new: true })
-    .then((card) => {
-      if (card !== null) {
-        res.status(200).send({ data: card });
-      } else {
-        res.status(404).send({ message: 'Карточки с таким id нет' });
-      }
-    })
+    .orFail()
+    .then((card) => res.send({ data: card }))
     .catch((err) => res.status(404).send({ message: `Карточки с таким id нет  ${err}` }));
 };
