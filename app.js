@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const cardsRouter = require('./routes/cards');
 const usersRouter = require('./routes/users');
 
@@ -8,6 +9,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   req.user = { _id: '5f3ba7827f95d518c4c786a7' };
