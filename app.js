@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const cardsRouter = require('./routes/cards');
-const usersRouter = require('./routes/users');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
@@ -26,9 +24,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.post('/signin', login);
 app.post('/signup', createUser);
+
 app.use(auth);
-app.use('/cards', cardsRouter);
-app.use('/users', usersRouter);
+app.use('/cards', require('./routes/cards'));
+app.use('/users', require('./routes/users'));
 
 app.use((req, res) => res.status(404).send({ message: 'Запрашиваемый ресурс не найден' }));
 
