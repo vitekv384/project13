@@ -35,14 +35,14 @@ module.exports.login = (req, res) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, '8c89fa0ad811b3656cd95e2fea3877f76cce6d17483b083bfba6c8e6b9ff46b9', { expiresIn: '7d' });
       res.cookie('jwt', token, {
         maxAge: 604800,
         httpOnly: true,
         sameSite: true,
         secure: true,
       });
-      res.sand({ token });
+      res.send({ token });
     })
     .catch((err) => {
       res
